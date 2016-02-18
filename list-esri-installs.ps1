@@ -39,3 +39,4 @@ foreach($UninstallRegKey in $UninstallRegKeys) {
    If ($AppPublisher -like 'Environmental Systems Research Institute, Inc.' -and $AppGUID -like '{*}'){$prgArray = $prgArray + $OutputObj}
    }            
   }    
+$prgArray | Select-Object -property AppName,@{Label=”Uninstall String”;Expression={("msiexec /x {0} /qb" -f $_.AppGUID)}},Softwarearchitecture | ft -autosize
